@@ -1,0 +1,37 @@
+{
+  "name": "bun-cli-repro",
+  "bin": "./src/cli.ts",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "type": "module",
+  "files": [
+    "src/",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./cli": {
+      "import": "./src/cli.ts",
+      "require": "./src/cli.ts",
+      "types": "./src/cli.ts"
+    }
+  },
+  "scripts": {
+    "flow": "bun install && bun run publish && bun install:global && bun run run",
+    "start": "./src/cli.ts",
+    "prepare": "chmod +x ./src/cli.ts",
+    "help": "./src/cli.ts --help",
+    "publish": "npm publish --registry http://localhost:4873/",
+    "install:global": "npm install -g bun-cli-repro --registry http://localhost:4873",
+    "run": "bun-cli-repro"
+  },
+  "version": "0.0.1",
+  "dependencies": {
+    "bun-types": "^0.1.2"
+  }
+}
